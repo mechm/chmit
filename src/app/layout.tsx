@@ -26,8 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >   <nav>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>   
+        <nav>
+         <Link href="/about">About</Link>
           {/* Prefetched when the link is hovered or enters the viewport */}
           <Link href="/availability">Availability</Link>
           {/* No prefetching */}
