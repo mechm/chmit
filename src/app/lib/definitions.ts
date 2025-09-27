@@ -5,7 +5,7 @@ export interface RandomImage {
 }
 
 export interface Page {
-    pageId: number;
+    pageid: number;
     template: Template;
     aliasTitle: string;
     metaDescription: string;

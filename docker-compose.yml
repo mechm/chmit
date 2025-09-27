@@ -1,18 +1,36 @@
 services:
   db:
-    # Use the official pre-built image from Docker Hub
+    # ... existing configuration ...
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sa -d chmit"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     build: ./db
     restart: always
-    environment:
+    environment:    
       POSTGRES_USER: sa
       POSTGRES_PASSWORD: lymm
       POSTGRES_DB: chmit
     ports:
       - "5432:5432"
     volumes:
-      # Persist the data on the host machine
       - postgres_data:/var/lib/postgresql/data
-       ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  web:
+    build: .
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_BUILD_ENV: true
+      POSTGRES_DB_HOST: db
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: lymm
+      POSTGRES_DB: chmit
+    depends_on:
+      - db
 
 volumes:
   postgres_data:

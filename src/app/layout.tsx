@@ -32,6 +32,7 @@ export default function RootLayout({
           {/* Prefetched when the link is hovered or enters the viewport */}
           <Link href="/availability">Availability</Link>
           {/* No prefetching */}
+          <Link href="/testimonials">Testimonials</Link>
           <a href="/contact">Contact</a>
         </nav>
         {children}
